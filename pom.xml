@@ -21,7 +21,7 @@
     <junit-jupiter.version>5.7.0</junit-jupiter.version>
 
     <main.verticle>cn.njupt.course.work_submit_system.MainVerticle</main.verticle>
-    <launcher.class>io.vertx.core.Launcher</launcher.class>
+    <launcher.class>cn.njupt.course.work_submit_system.MainVerticleKt</launcher.class>
   </properties>
 
   <dependencyManagement>
@@ -120,6 +120,7 @@
           </execution>
         </executions>
       </plugin>
+
       <plugin>
         <artifactId>maven-shade-plugin</artifactId>
         <version>${maven-shade-plugin.version}</version>
@@ -135,17 +136,17 @@
                   implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                   <manifestEntries>
                     <Main-Class>${launcher.class}</Main-Class>
-                    <Main-Verticle>${main.verticle}</Main-Verticle>
                   </manifestEntries>
                 </transformer>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
               </transformers>
-              <outputFile>${project.build.directory}/${project.artifactId}-${project.version}-fat.jar
+              <outputFile>${project.build.directory}/${project.artifactId}-fat.jar
               </outputFile>
             </configuration>
           </execution>
         </executions>
       </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>

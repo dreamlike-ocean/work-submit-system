@@ -1,0 +1,368 @@
+{
+	"info": {
+		"_postman_id": "112430b1-dc01-4a0c-982a-42dde2c9d413",
+		"name": "作业提交平台",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "登录",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"13\",\r\n    \"password\":\"password\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "当前用户",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/currentUser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"currentUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "布置一次作业",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"homework\":{\r\n        \"desc\":\"第一次作业\",\r\n        \"courseId\":3\r\n    },\r\n    \"questions\":[\r\n        {\r\n            \"desc\":\"第一题\",\r\n            \"answer\":\"A\",\r\n            \"type\":\"CHOICE\"\r\n        },\r\n        {\r\n            \"desc\":\"第2题\",\r\n            \"type\":\"QA\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/homework",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"homework"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取当前用户的课程,教师为自己开的课，学生为自己订阅的课",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "订阅一个课程",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost//course/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"",
+						"course",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "录入人员信息",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"username\":\"new\",\n        \"password\":\"ads\",\n        \"role\":\"TEACHER\"\n    },\n     {\n        \"username\":\"adi\",\n        \"password\":\"ads\",\n        \"role\":\"ADMIN\"\n    },\n     {\n        \"username\":\"DDADAWDAWD\",\n        \"password\":\"ads\",\n        \"role\":\"STUDENT\"\n    }\n]"
+				},
+				"url": {
+					"raw": "http://localhost/admin/registerUser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"admin",
+						"registerUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "录入一个课程信息",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\n    {\n     \"teacherId\":4,\n    \"desc\": \"123123123\",\n    \"name\": \"network\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost/admin/registerCourse",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"admin",
+						"registerCourse"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "上传文件",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "",
+							"type": "file",
+							"src": "/C:/Users/asus/Desktop/91371857_p1.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/file",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"file"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取一个文件",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/file/029b866a-a2b7-44b7-8dbf-35a842d59e9f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"file",
+						"029b866a-a2b7-44b7-8dbf-35a842d59e9f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "所有人均可按课程id获取全部的作业",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/homework/course/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"homework",
+						"course",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "按作业id获取作业详情，教师端可见answer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/homework/detail/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"homework",
+						"detail",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "提交一次作业",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"answer\":\"B\",\r\n        \"questionId\":3,\r\n        \"homeworkId\":4\r\n    },\r\n     {\r\n        \"answer\":\"A\",\r\n        \"questionId\":4,\r\n        \"homeworkId\":4\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/homework/paper",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"homework",
+						"paper"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "按照id获取用户信息，管理员可见密码，教师不可见密码，用户无法调用",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/admin/user/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"admin",
+						"user",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "教师批改某一个作业,result允许的值是RIGHT,WRONG,WAIT",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"paperId\":5,\r\n    \"result\":\"RIGHT\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/homework/paper",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"homework",
+						"paper"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "教师根据homeworkId获取所有人提交的对应作业",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/homework/papers/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"homework",
+						"papers",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "按照homeworkid获取自己的作业",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/homework/paper/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"homework",
+						"paper",
+						"4"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

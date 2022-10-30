@@ -1,16 +1,12 @@
 package cn.njupt.course.work_submit_system
 
-import cn.njupt.course.work_submit_system.entity.LoginUser
 import cn.njupt.course.work_submit_system.mapper.*
 import cn.njupt.course.work_submit_system.router.*
 import cn.njupt.course.work_submit_system.util.Response
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer
-import com.fasterxml.jackson.module.kotlin.kotlinModule
 import io.vertx.core.Vertx
-import io.vertx.core.json.Json
-import io.vertx.core.json.JsonArray
 import io.vertx.core.json.jackson.DatabindCodec
 import io.vertx.ext.web.Router
 import io.vertx.ext.web.handler.SessionHandler
@@ -21,15 +17,20 @@ import io.vertx.kotlin.sqlclient.poolOptionsOf
 import io.vertx.mysqlclient.MySQLPool
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import kotlin.system.exitProcess
 
-suspend fun main(){
+suspend fun main(args: Array<String>){
+  if (args.size != 2){
+    println("args小于2")
+    exitProcess(-1)
+  }
   var vertx = Vertx.vertx()
 
   var mySQLPool = MySQLPool.pool(
     vertx,
     mySQLConnectOptionsOf(
       user = "root",
-      password = "12345678",
+      password = args[1],
       host = "localhost",
       port = 3306,
       database = "worksubmit"
@@ -63,11 +64,11 @@ suspend fun main(){
   CourseRouter(router,courseMapper)
   FileRouter(router)
 
-  println(
-    vertx.createHttpServer()
-      .requestHandler(router)
-      .listen(80).await()
-  )
+  var server = vertx.createHttpServer()
+    .requestHandler(router)
+    .listen(args[0].toInt()).await()
+
+  println("server is listening on ${server.actualPort()}")
 
 
 }
