@@ -2,6 +2,12 @@
 
 image:https://img.shields.io/badge/vert.x-4.3.4-purple.svg[link="https://vertx.io"]
 
+由于本人的服务器是1c1g所以启动还是使用的单线程eventloop，算是node.js吧。。。。
+
+启动参数为java -jar {打包产物}.jar   {port}  {db.passwword}
+
+数据库建表见src/resource目录
+
 This application was generated using http://start.vertx.io
 
 == Building
